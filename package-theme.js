@@ -17,6 +17,7 @@ const exclude = [
   'package-theme.js',
   '.DS_Store',
   'symlink.js',
+  'README.md',
 ];
 
 // Clean dist folder
