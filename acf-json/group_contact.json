@@ -1,0 +1,65 @@
+{
+  "key": "group_contact",
+  "title": "Contact Section",
+  "fields": [
+    {
+      "key": "field_ct_title",
+      "label": "Contact Title",
+      "name": "ct_title",
+      "type": "text",
+      "placeholder": "Get in Touch"
+    },
+    {
+      "key": "field_ct_sub",
+      "label": "Contact Subtitle",
+      "name": "ct_sub",
+      "type": "text",
+      "placeholder": "Contact Us"
+    },
+    {
+      "key": "field_ct_desc",
+      "label": "Contact Description",
+      "name": "ct_desc",
+      "type": "textarea",
+      "rows": 3,
+      "placeholder": "Have a project in mind? We would love to hear from you."
+    },
+    {
+      "key": "field_ct_email",
+      "label": "Contact Email",
+      "name": "ct_email",
+      "type": "email",
+      "placeholder": "hello@yourbrand.com"
+    },
+    {
+      "key": "field_ct_location",
+      "label": "Location",
+      "name": "ct_location",
+      "type": "text",
+      "placeholder": "Your City, Country"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "page_type",
+        "operator": "==",
+        "value": "front_page"
+      }
+    ],
+    [
+      {
+        "param": "page_template",
+        "operator": "==",
+        "value": "page-contact.php"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "active": true,
+  "modified": 1700000003
+}
