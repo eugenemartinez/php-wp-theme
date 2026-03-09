@@ -194,4 +194,18 @@
     line-height: 1.5;
     font-family: var(--font-body);
   }
+
+  body,
+  nav,
+  footer,
+  section,
+  article,
+  main,
+  header,
+  .bg-background,
+  .bg-card,
+  .bg-muted,
+  .bg-foreground {
+    transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease;
+  }
 }

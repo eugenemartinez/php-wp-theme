@@ -3,6 +3,7 @@ $logo         = get_template_directory_uri() . '/assets/logo.png';
 $url_home     = home_url('/');
 $url_about    = home_url('/about');
 $url_services = home_url('/services');
+$url_work     = home_url('/work');
 $url_contact  = home_url('/contact');
 ?>
 
@@ -11,24 +12,54 @@ $url_contact  = home_url('/contact');
     <div class="flex justify-between items-center h-16 md:h-20">
 
       <!-- Logo -->
-      <a href="<?php echo esc_url($url_home); ?>" class="flex items-center hover:opacity-80 transition-opacity">
+      <a href="<?php echo esc_url($url_home); ?>" class="flex items-center" data-gsap="hover-dim">
         <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('name'); ?>" class="h-8 md:h-10 w-auto" />
       </a>
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center gap-8">
         <a href="<?php echo esc_url($url_about); ?>"
-          class="transition-colors <?php echo is_page('about') ? 'text-primary font-semibold' : 'text-foreground/70 hover:text-primary'; ?>">
+          class="transition-colors <?php echo is_page('about') ? 'text-primary font-semibold' : 'text-foreground/70 hover:text-primary'; ?>"
+          <?php echo !is_page('about') ? 'data-gsap="hover-dim"' : ''; ?>>
           About
         </a>
         <a href="<?php echo esc_url($url_services); ?>"
-          class="transition-colors <?php echo is_page('services') ? 'text-primary font-semibold' : 'text-foreground/70 hover:text-primary'; ?>">
+          class="transition-colors <?php echo is_page('services') ? 'text-primary font-semibold' : 'text-foreground/70 hover:text-primary'; ?>"
+          <?php echo !is_page('services') ? 'data-gsap="hover-dim"' : ''; ?>>
           Services
         </a>
+        <a href="<?php echo esc_url($url_work); ?>"
+          class="transition-colors <?php echo is_page('work') ? 'text-primary font-semibold' : 'text-foreground/70 hover:text-primary'; ?>"
+          <?php echo !is_page('work') ? 'data-gsap="hover-dim"' : ''; ?>>
+          Work
+        </a>
         <a href="<?php echo esc_url($url_contact); ?>"
-          class="bg-primary text-primary-foreground px-6 py-2.5 rounded-full hover:opacity-90 transition-all shadow-md hover:shadow-lg">
+          class="bg-primary text-primary-foreground px-6 py-2.5 rounded-full shadow-md"
+          data-gsap="hover-lift">
           Contact
         </a>
+          <!-- Dark mode toggle -->
+        <button
+          id="dark-mode-btn"
+          class="p-2 text-foreground/70 hover:text-primary transition-colors rounded-full cursor-pointer"
+          aria-label="Toggle dark mode">
+          <!-- Moon — shown in light mode -->
+          <svg id="dark-mode-moon" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <!-- Sun — shown in dark mode -->
+          <svg id="dark-mode-sun" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -57,10 +88,36 @@ $url_contact  = home_url('/contact');
           class="text-left py-3 transition-colors border-b border-border <?php echo is_page('services') ? 'text-primary font-semibold' : 'text-foreground/70 hover:text-primary'; ?>">
           Services
         </a>
+        <a href="<?php echo esc_url($url_work); ?>"
+          class="text-left py-3 transition-colors border-b border-border <?php echo is_page('work') ? 'text-primary font-semibold' : 'text-foreground/70 hover:text-primary'; ?>">
+          Work
+        </a>
         <a href="<?php echo esc_url($url_contact); ?>"
           class="mt-2 bg-primary text-primary-foreground px-6 py-3 rounded-full hover:opacity-90 transition-all text-center">
           Contact
         </a>
+                  <!-- Dark mode toggle -->
+        <button
+          id="dark-mode-btn-mobile"
+          class="p-2 text-foreground/70 hover:text-primary transition-colors rounded-full"
+          aria-label="Toggle dark mode">
+          <!-- Moon — shown in light mode -->
+          <svg id="dark-mode-moon" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <!-- Sun — shown in dark mode -->
+          <svg id="dark-mode-sun" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
       </div>
     </div>
 

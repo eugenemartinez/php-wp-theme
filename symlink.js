@@ -2,7 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 
-const wpThemesDir = path.join(os.homedir(), 'Local Sites', 'wp-theme', 'app', 'public', 'wp-content', 'themes');
+const wpSiteName = 'wp-theme'; // Change this to your Local WP site name
+const wpThemesDir = path.join(os.homedir(), 'Local Sites', wpSiteName, 'app', 'public', 'wp-content', 'themes');
 const sourceDir = path.resolve('.');
 const themeName = path.basename(sourceDir);
 const linkPath = path.join(wpThemesDir, themeName);

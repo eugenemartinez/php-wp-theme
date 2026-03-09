@@ -12,14 +12,17 @@ $email     = get_option('footer_email') ?: get_option('admin_email');
     <div class="flex flex-col md:flex-row justify-between items-center gap-6">
 
       <!-- Logo -->
-      <div id="footer-logo" class="text-center md:text-left">
+      <div id="footer-logo" class="text-center md:text-left" data-gsap="hover-dim">
         <img src="<?php echo esc_url($logo); ?>" alt="<?php bloginfo('name'); ?>" class="h-10 w-auto mx-auto md:mx-0 mb-2" />
         <p class="text-background/60 text-sm"><?php bloginfo('name'); ?></p>
       </div>
 
       <!-- Email -->
       <div class="text-center">
-        <a href="mailto:<?php echo esc_attr($email); ?>" class="text-background/60 hover:text-background transition-colors text-sm">
+        <a
+          href="mailto:<?php echo esc_attr($email); ?>"
+          class="text-background/60 hover:text-background transition-colors text-sm"
+          data-gsap="hover-dim">
           <?php echo esc_html($email); ?>
         </a>
       </div>

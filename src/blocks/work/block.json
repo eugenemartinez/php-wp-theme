@@ -1,0 +1,16 @@
+{
+  "apiVersion": 3,
+  "name": "theme/work",
+  "title": "Work",
+  "category": "theme",
+  "description": "Capabilities showcase with animated icons",
+  "supports": { "html": false },
+  "attributes": {
+    "title": { "type": "string", "default": "What We Do" },
+    "subtitle": { "type": "string", "default": "Capabilities" },
+    "description": { "type": "string", "default": "We craft digital experiences that move — from strategy to execution, every detail is intentional." }
+  },
+  "textdomain": "theme",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

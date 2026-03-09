@@ -3,16 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-"scripts": {
-  "dev": "vite build --watch",
-  "build": "vite build",
-  "preview": "vite preview",
-  "package": "npm run build && node package-theme.js",
-  "link": "node symlink.js",
-  "unlink": "node symlink.js --remove"
+  "scripts": {
+    "dev": "concurrently \"vite build --watch\" \"wp-scripts start\"",
+    "build": "vite build && wp-scripts build",
+    "package": "npm run build && node package-theme.js",
+    "package:zip": "npm run build && node package-theme.js --zip",
+    "link": "node symlink.js",
+    "unlink": "node symlink.js --remove"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
+    "@wordpress/scripts": "^31.6.0",
+    "concurrently": "^9.2.1",
     "vite": "^7.3.1"
   },
   "dependencies": {

@@ -1,35 +1,39 @@
 import fs from 'fs';
 import path from 'path';
+import { execSync } from 'child_process';
 
-const distDir = './dist';
+const themeName = path.basename(path.resolve('.'));
+const releaseDir = './release';
+const themeDir = path.join(releaseDir, themeName);
+const shouldZip = process.argv.includes('--zip');
 
-// Only these are excluded from the package
 const exclude = [
   'node_modules',
-  'dist',
   'src',
+  'release',
   '.git',
   '.gitignore',
   '.env',
-  'vite.config.js',
   'package.json',
   'package-lock.json',
   'package-theme.js',
-  '.DS_Store',
   'symlink.js',
   'README.md',
+  '.DS_Store',
+  'vite.config.js',
+  'public',
 ];
 
-// Clean dist folder
-if (fs.existsSync(distDir)) {
-  fs.rmSync(distDir, { recursive: true });
+// Clean release folder
+if (fs.existsSync(releaseDir)) {
+  fs.rmSync(releaseDir, { recursive: true });
 }
-fs.mkdirSync(distDir);
+fs.mkdirSync(themeDir, { recursive: true });
 
 function shouldExclude(filePath) {
   const relative = path.relative('.', filePath);
-  return exclude.some(ex => 
-    relative === ex || 
+  return exclude.some(ex =>
+    relative === ex ||
     relative.startsWith(ex + path.sep) ||
     path.basename(filePath) === ex
   );
@@ -53,12 +57,19 @@ function copyRecursive(src, dest) {
   }
 }
 
-// Copy everything from root except excluded
+// Copy everything
 fs.readdirSync('.').forEach(file => {
   copyRecursive(
     path.resolve(file),
-    path.join(distDir, file)
+    path.join(themeDir, file)
   );
 });
 
-console.log('\n✅ Theme packaged successfully → /dist');
+if (shouldZip) {
+  const zipName = `${themeName}.zip`;
+  execSync(`cd release && zip -r ${zipName} ${themeName}`);
+  fs.rmSync(themeDir, { recursive: true });
+  console.log(`\n✅ Theme zipped → release/${zipName}`);
+} else {
+  console.log(`\n✅ Theme packaged → release/${themeName}/`);
+}

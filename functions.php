@@ -2,15 +2,30 @@
 
 // Load theme styles and scripts
 function theme_scripts() {
-  wp_enqueue_style('theme-style', get_template_directory_uri() . '/build/index.css', [], filemtime(get_template_directory() . '/build/index.css'));
-  wp_enqueue_script('theme-script', get_template_directory_uri() . '/build/index.js', [], filemtime(get_template_directory() . '/build/index.js'), true);
+  wp_enqueue_style(
+    'theme-style',
+    get_template_directory_uri() . '/dist/index.css',
+    [],
+    filemtime(get_template_directory() . '/dist/index.css')
+  );
+  wp_enqueue_script(
+    'theme-script',
+    get_template_directory_uri() . '/dist/index.js',
+    [],
+    filemtime(get_template_directory() . '/dist/index.js'),
+    true
+  );
 }
 add_action('wp_enqueue_scripts', 'theme_scripts');
 
-// Load ACF field groups
-foreach (glob(get_template_directory() . '/acf-fields/*.php') as $file) {
-  require_once $file;
+// Register blocks
+function theme_register_blocks() {
+  $blocks_dir = get_template_directory() . '/build/blocks';
+  foreach (glob($blocks_dir . '/*/block.json') as $block) {
+    register_block_type($block);
+  }
 }
+add_action('init', 'theme_register_blocks');
 
 // Post view tracking
 function theme_track_views($post_id) {
@@ -40,15 +55,3 @@ function theme_search_filter($query) {
   return $query;
 }
 add_filter('pre_get_posts', 'theme_search_filter');
-
-// // ACF field groups in admin notice (for debugging)
-// add_action('admin_notices', function() {
-//   $files = glob(get_template_directory() . '/acf-fields/*.php');
-//   echo '<div class="notice"><p>ACF files found: ' . count($files) . '</p></div>';
-// });
-
-
-add_action('add_meta_boxes', function() {
-  global $post;
-  error_log('add_meta_boxes fired on: ' . get_post_type());
-});
