@@ -3,7 +3,13 @@ import path from 'path';
 import os from 'os';
 
 const wpSiteName = 'wp-theme'; // Change this to your Local WP site name
-const wpThemesDir = path.join(os.homedir(), 'Local Sites', wpSiteName, 'app', 'public', 'wp-content', 'themes');
+
+// // uncomment this if you want to use LocalWP
+// const wpThemesDir = path.join(os.homedir(), 'Local Sites', wpSiteName, 'app', 'public', 'wp-content', 'themes');
+
+// Wordpress Working Directory with Valet Park
+const wpThemesDir = path.join(os.homedir(), 'Wordpress', wpSiteName, 'wp-content', 'themes');
+
 const sourceDir = path.resolve('.');
 const themeName = path.basename(sourceDir);
 const linkPath = path.join(wpThemesDir, themeName);
