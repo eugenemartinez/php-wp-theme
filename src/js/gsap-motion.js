@@ -17,18 +17,18 @@ export function initGsapMotion() {
     const animations = el.dataset.gsap.split(' ').map(a => a.trim());
 
     // ── Parse options ─────────────────────────────────────────
-    const duration    = parseFloat(el.dataset.duration)   || 0.6;
-    const delay       = parseFloat(el.dataset.delay)      || 0;
-    const scroll      = el.dataset.scroll === 'true';
-    const scrollStart = el.dataset.scrollStart             || 'top 85%';
-    const ease        = el.dataset.ease                    || 'power2.out';
-    const x           = parseFloat(el.dataset.x)          || 0;
-    const y           = parseFloat(el.dataset.y)          || 0;
-    const scale       = parseFloat(el.dataset.scale)      || 1.2;
-    const rotation    = parseFloat(el.dataset.rotation)   || 0;
-    const opacityFrom = parseFloat(el.dataset.opacityFrom)|| 0.4;
-    const opacityTo   = parseFloat(el.dataset.opacityTo)  || 0.6;
-    const stagger     = parseFloat(el.dataset.stagger)    || 0.1;
+    const duration = parseFloat(el.dataset.duration) || 0.6;
+    const delay = parseFloat(el.dataset.delay) || 0;
+    const scroll = el.dataset.scroll === 'true';
+    const scrollStart = el.dataset.scrollStart || 'top 85%';
+    const ease = el.dataset.ease || 'power2.out';
+    const x = parseFloat(el.dataset.x) || 0;
+    const y = parseFloat(el.dataset.y) || 0;
+    const scale = parseFloat(el.dataset.scale) || 1.2;
+    const rotation = parseFloat(el.dataset.rotation) || 0;
+    const opacityFrom = parseFloat(el.dataset.opacityFrom) || 0.4;
+    const opacityTo = parseFloat(el.dataset.opacityTo) || 0.6;
+    const stagger = parseFloat(el.dataset.stagger) || 0.1;
 
     // ── Scroll trigger config ─────────────────────────────────
     const scrollConfig = scroll ? {
@@ -94,13 +94,53 @@ export function initGsapMotion() {
           break;
 
         case 'hover-glow':
-          el.addEventListener('mouseenter', () => gsap.to(el, { boxShadow: '0 0 30px rgba(139,92,246,0.4)', duration: 0.3 }));
-          el.addEventListener('mouseleave', () => gsap.to(el, { boxShadow: '0 0 0px rgba(139,92,246,0)', duration: 0.3 }));
+          el.addEventListener('mouseenter', () => {
+            el.classList.add('gsap-glowing');
+            gsap.to(el, { scale: 1.02, duration: 0.3 });
+          });
+          el.addEventListener('mouseleave', () => {
+            el.classList.remove('gsap-glowing');
+            gsap.to(el, { scale: 1, duration: 0.3 });
+          });
           break;
 
         case 'hover-dim':
           el.addEventListener('mouseenter', () => gsap.to(el, { opacity: 0.7, duration: 0.2 }));
           el.addEventListener('mouseleave', () => gsap.to(el, { opacity: 1, duration: 0.2 }));
+          break;
+
+        // hover-rise — lift + scale, no color
+        case 'hover-rise':
+          el.addEventListener('mouseenter', () => gsap.to(el, { y: -6, scale: 1.03, duration: 0.3, ease: 'power2.out' }));
+          el.addEventListener('mouseleave', () => gsap.to(el, { y: 0, scale: 1, duration: 0.3, ease: 'power2.out' }));
+          break;
+
+        // hover-bright — opacity 1 from whatever it was, color agnostic
+        case 'hover-bright':
+          const originalOpacity = parseFloat(getComputedStyle(el).opacity) || 0.7;
+          el.addEventListener('mouseenter', () => gsap.to(el, { opacity: 1, duration: 0.2 }));
+          el.addEventListener('mouseleave', () => gsap.to(el, { opacity: originalOpacity, duration: 0.2 }));
+          break;
+
+        // hover-arrow — slides a child with data-arrow attribute
+        case 'hover-arrow':
+          const arrow = el.querySelector('[data-arrow]');
+          if (arrow) {
+            el.addEventListener('mouseenter', () => gsap.to(arrow, { x: 5, duration: 0.2 }));
+            el.addEventListener('mouseleave', () => gsap.to(arrow, { x: 0, duration: 0.2 }));
+          }
+          break;
+
+        // hover-card — lift + glow using CSS class
+        case 'hover-card':
+          el.addEventListener('mouseenter', () => {
+            el.classList.add('gsap-glowing');
+            gsap.to(el, { y: -4, duration: 0.3, ease: 'power2.out' });
+          });
+          el.addEventListener('mouseleave', () => {
+            el.classList.remove('gsap-glowing');
+            gsap.to(el, { y: 0, duration: 0.3, ease: 'power2.out' });
+          });
           break;
 
         // ── Continuous animations ─────────────────────────────
@@ -252,6 +292,26 @@ export function initGsapMotion() {
             ease: 'power1.inOut'
           });
           break;
+
+        // ── Input Focus ──────────────────────────────────
+
+        case 'focus-scale':
+          el.addEventListener('focus', () => gsap.to(el, { scale: 1.02, duration: 0.2, ease: 'power2.out' }));
+          el.addEventListener('blur', () => gsap.to(el, { scale: 1, duration: 0.2, ease: 'power2.out' }));
+          break;
+
+        case 'focus-glow':
+          el.addEventListener('focus', () => {
+            el.classList.add('gsap-glowing');
+            gsap.to(el, { scale: 1.01, duration: 0.2 });
+          });
+          el.addEventListener('blur', () => {
+            el.classList.remove('gsap-glowing');
+            gsap.to(el, { scale: 1, duration: 0.2 });
+          });
+          break;
+
+        // Add more reusable animations below
       }
     });
   });
