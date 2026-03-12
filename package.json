@@ -4,13 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite build --watch\" \"wp-scripts start\"",
-    "build": "vite build && wp-scripts build",
-    "package": "npm run build && node package-theme.js",
-    "package:zip": "npm run build && node package-theme.js --zip",
-    "link": "node symlink.js",
-    "unlink": "node symlink.js --remove",
-    "clean": "rm -rf node_modules release build dist && echo 'cleaned'"
+    "dev": "concurrently \"vite build --watch\" \"wp-scripts start --output-path=src/theme/blocks --source-path=src/blocks\"",
+    "build": "vite build && wp-scripts build --source-path=src/blocks --output-path=src/theme/blocks",
+    "package": "npm run build && node scripts/package-theme.js",
+    "package:zip": "npm run build && node scripts/package-theme.js --zip",
+    "link": "node scripts/symlink.js",
+    "unlink": "node scripts/symlink.js --remove",
+    "clean": "rm -rf node_modules release && echo 'cleaned'"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",

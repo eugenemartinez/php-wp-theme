@@ -33,7 +33,7 @@
     </div>
 
     <h1
-      class="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight"
+      class="text-3xl sm:text-4xl md:text-5xl font-bold text-red mb-4 leading-tight"
       data-gsap="fade-up"
       data-delay="0.3">
       This page took a detour.

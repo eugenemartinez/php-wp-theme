@@ -2,12 +2,17 @@ import { defineConfig } from 'vite'
 import path from 'path';
 import tailwindcss from '@tailwindcss/vite'
 
+const isWatch = process.argv.includes('--watch');
+
 export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
   build: {
-    outDir: path.resolve(__dirname, 'dist'),
+    outDir: path.resolve(__dirname, 'src/theme/assets'),
+    watch: isWatch ? {
+      exclude: ['src/theme/assets/**', 'src/theme/build/**'],
+    } : null,
     emptyOutDir: false,
     rollupOptions: {
       input: {
@@ -15,9 +20,9 @@ export default defineConfig({
         styles: path.resolve(__dirname, 'src/index.css')
       },
       output: {
-        entryFileNames: 'index.js', 
+        entryFileNames: 'index.js',
         assetFileNames: 'index.css'
-      }
+      },
     }
   }
 })

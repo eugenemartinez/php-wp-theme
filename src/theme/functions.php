@@ -4,15 +4,15 @@
 function theme_scripts() {
   wp_enqueue_style(
     'theme-style',
-    get_template_directory_uri() . '/dist/index.css',
+    get_template_directory_uri() . '/assets/index.css',
     [],
-    filemtime(get_template_directory() . '/dist/index.css')
+    filemtime(get_template_directory() . '/assets/index.css')
   );
   wp_enqueue_script(
     'theme-script',
-    get_template_directory_uri() . '/dist/index.js',
+    get_template_directory_uri() . '/assets/index.js',
     [],
-    filemtime(get_template_directory() . '/dist/index.js'),
+    filemtime(get_template_directory() . '/assets/index.js'),
     true
   );
 }
@@ -20,7 +20,7 @@ add_action('wp_enqueue_scripts', 'theme_scripts');
 
 // Register blocks
 function theme_register_blocks() {
-  $blocks_dir = get_template_directory() . '/build/blocks';
+  $blocks_dir = get_template_directory() . '/blocks';
   foreach (glob($blocks_dir . '/*/block.json') as $block) {
     register_block_type($block);
   }
