@@ -10,7 +10,7 @@
     "package:zip": "npm run build && node scripts/package-theme.js --zip",
     "link": "node scripts/symlink.js",
     "unlink": "node scripts/symlink.js --remove",
-    "clean": "rm -rf node_modules release && echo 'cleaned'"
+    "clean": "rm -rf node_modules release; rm -rf node_modules release && echo 'cleaned'"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
