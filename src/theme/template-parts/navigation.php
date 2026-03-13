@@ -34,7 +34,7 @@ $url_contact  = home_url('/contact');
           Work
         </a>
         <a href="<?php echo esc_url($url_contact); ?>"
-          class="bg-primary text-primary-foreground px-6 py-2.5 rounded-full shadow-md"
+          class="bg-primary text-white px-6 py-2.5 rounded-full shadow-md"
           data-gsap="hover-lift">
           Contact
         </a>
@@ -93,7 +93,7 @@ $url_contact  = home_url('/contact');
           Work
         </a>
         <a href="<?php echo esc_url($url_contact); ?>"
-          class="mt-2 bg-primary text-primary-foreground px-6 py-3 rounded-full hover:opacity-90 transition-all text-center">
+          class="mt-2 bg-primary text-white px-6 py-3 rounded-full hover:opacity-90 transition-all text-center">
           Contact
         </a>
                   <!-- Dark mode toggle -->

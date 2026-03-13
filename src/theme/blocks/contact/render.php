@@ -57,7 +57,7 @@ $location    = $attributes['location']    ?? 'Your City, Country';
       data-delay="0.5">
       <a
         href="mailto:<?php echo esc_attr($email); ?>"
-        class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-10 py-4 rounded-full font-semibold text-lg"
+        class="inline-flex items-center gap-2 bg-primary text-white px-10 py-4 rounded-full font-semibold text-lg"
         data-gsap="hover-lift">
         Send a Message
       </a>

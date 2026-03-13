@@ -64,7 +64,7 @@ $image_url    = $image_id
         </p>
         <a
           href="<?php echo esc_url($cta_url); ?>"
-          class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold"
+          class="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-semibold"
           data-gsap="fade-up hover-lift"
           data-scroll="true"
           data-delay="0.5">

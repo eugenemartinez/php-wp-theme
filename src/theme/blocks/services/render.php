@@ -53,7 +53,7 @@ $services   = [
       data-scroll="true"
       data-stagger="0.15">
       <?php foreach ($services as $service) : ?>
-        <div class="bg-card border border-border rounded-2xl p-8" data-gsap="hover-lift">
+        <div class="bg-background border border-border rounded-2xl p-8" data-gsap="hover-lift">
           <h3 class="text-xl font-bold text-foreground mb-4">
             <?php echo esc_html($service['title']); ?>
           </h3>

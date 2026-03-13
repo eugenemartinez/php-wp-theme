@@ -148,7 +148,7 @@ $capabilities = [
       </p>
       <a
         href="<?php echo home_url('/contact'); ?>"
-        class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold text-sm whitespace-nowrap"
+        class="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-semibold text-sm whitespace-nowrap"
         data-gsap="hover-lift">
         Start a Project
         <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
