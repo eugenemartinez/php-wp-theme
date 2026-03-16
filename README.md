@@ -29,44 +29,40 @@ build/
 
 ## Project Structure
 ```
-├── assets/               ← theme assets (logo, images)
-├── template-parts/
-│   ├── navigation.php    ← fixed nav, always rendered via header.php
-│   └── footer.php        ← footer, always rendered via footer.php
+.
+├── .git/
+├── scripts/
+│   ├── package-theme.js
+│   └── symlink.js
 ├── src/
-│   ├── css/              ← fonts.css, tailwind.css, theme.css
-│   ├── index.css         ← Tailwind entry
-│   ├── index.js          ← Vite entry — gsap-motion + navigation + page transitions
-│   └── js/
-│       ├── gsap-motion.js      ← declarative animation wrapper
-│       ├── navigation.js       ← mobile menu + scroll effect + dark mode
-│       ├── page-transition.js  ← page transitions
-│       └── single.js           ← share button for blog posts
-├── src/blocks/
-│   ├── hero/             ← block.json, index.js, render.php
-│   ├── about/
-│   ├── services/
-│   ├── contact/
-│   └── work/
-├── dist/                 ← Vite compiled output (gitignored)
-├── build/                ← wp-scripts compiled output (gitignored)
-├── release/              ← packaged theme output (gitignored)
-├── front-page.php        ← the_content() only
-├── page.php              ← generic fallback for all inner pages
-├── home.php              ← blog listing
-├── single.php            ← single post
-├── archive.php           ← category/tag archive
-├── search.php            ← search results
-├── 404.php               ← not found
-├── header.php            ← renders navigation template part
-├── footer.php            ← renders footer template part
-├── index.php             ← silence is golden
-├── style.css             ← theme registration
-├── functions.php         ← enqueues dist/, registers blocks from build/
-├── vite.config.js
+│   ├── index.css           # Tailwind entry (root of src/)
+│   ├── index.js            # Vite entry (root of src/)
+│   ├── css/                # Contains fonts.css, tailwind.css, theme.css
+│   ├── js/                 # Contains gsap-motion.js, navigation.js, etc.
+│   ├── blocks/             # Source Gutenberg blocks (about, contact, hero, etc.)
+│   └── theme/              # The active theme directory
+│       ├── 404.php
+│       ├── archive.php
+│       ├── footer.php
+│       ├── front-page.php
+│       ├── functions.php
+│       ├── header.php
+│       ├── home.php
+│       ├── index.php
+│       ├── page.php
+│       ├── screenshot.png
+│       ├── search.php
+│       ├── single.php
+│       ├── style.css
+│       ├── assets/         # (Build/Copy target in screenshot)
+│       ├── blocks/         # (Compile target in screenshot)
+│       └── template-parts/
+├── .gitignore
+├── README.md
+├── agents.md
 ├── package.json
-├── package-theme.js      ← packaging script
-└── symlink.js            ← Local WP symlink script
+├── package-lock.json
+└── vite.config.js
 ```
 
 ## Getting Started
