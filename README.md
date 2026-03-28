@@ -30,7 +30,6 @@ build/
 ## Project Structure
 ```
 .
-├── .git/
 ├── scripts/
 │   ├── package-theme.js
 │   └── symlink.js
