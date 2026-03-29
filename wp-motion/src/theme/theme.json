@@ -1,0 +1,44 @@
+{
+	"version": 2,
+	"settings": {
+		"appearanceTools": true,
+		"color": {
+			"palette": [
+				{ "slug": "background", "color": "#ffffff", "name": "Background" },
+				{ "slug": "foreground", "color": "#0a0a0a", "name": "Foreground" },
+				{ "slug": "primary", "color": "#7c3aed", "name": "Primary" },
+				{ "slug": "secondary", "color": "#db2777", "name": "Secondary" },
+				{ "slug": "accent", "color": "#ea580c", "name": "Accent" }
+			],
+			"custom": {
+				"dark": {
+					"background": "oklch(0.145 0 0)",
+					"foreground": "oklch(0.985 0 0)",
+					"border": "oklch(0.269 0 0)"
+				}
+			}
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "'Poppins', -apple-system, sans-serif",
+					"name": "Headline",
+					"slug": "headline"
+				},
+				{
+					"fontFamily": "'Inter', -apple-system, sans-serif",
+					"name": "Body",
+					"slug": "body"
+				}
+			],
+			"custom": {
+				"font-weight-medium": "500",
+				"font-weight-normal": "400"
+			}
+		},
+		"layout": {
+			"contentSize": "800px",
+			"wideSize": "1200px"
+		}
+	}
+}
