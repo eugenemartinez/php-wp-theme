@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "theme/hero",
+  "title": "Hero",
+  "category": "theme",
+  "description": "Hero section with title, subtitle, description and CTA.",
+  "supports": {
+    "html": false,
+    "inserter": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Your Headline Here"
+    },
+    "titleSpan": {
+      "type": "string",
+      "default": "Highlighted Word"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Your subtitle here"
+    },
+    "description": {
+      "type": "string",
+      "default": "A brief description of what you do and who you serve."
+    },
+    "ctaText": {
+      "type": "string",
+      "default": "Get in Touch"
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": "/contact"
+    },
+    "backgroundImage": {
+      "type": "number",
+      "default": 0
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 50
+    }
+  },
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}

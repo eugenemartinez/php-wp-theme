@@ -1,0 +1,199 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --font-headline: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ── Static tokens ── */
+  --border: rgba(255, 255, 255, 0.1);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --destructive: #d4183d;
+  --radius: 0.625rem;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --primary: #7c3aed;
+  --secondary: #db2777;
+  --accent: #ea580c;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --border: oklch(0.269 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-headline);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  p {
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    font-family: var(--font-body);
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: 600;
+    line-height: 1.5;
+    font-family: var(--font-headline);
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+    font-family: var(--font-body);
+  }
+
+  body,
+  nav,
+  footer,
+  section,
+  article,
+  main,
+  header,
+  .bg-background,
+  .bg-card,
+  .bg-muted,
+  .bg-foreground {
+    transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  [data-motion*="hover-glow"],
+  [data-motion*="hover-card"] {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .motion-glowing {
+    box-shadow: 0 0 30px color-mix(in srgb, var(--color-primary) 40%, transparent);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .bg-grid-texture {
+      position: relative;
+  }
+
+  .bg-grid-texture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--foreground) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.1; 
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Add to your CSS */
+  .product-card {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0.4; 
+    transform: translateX(-50%);
+  }
+
+  .product-card:hover {
+    opacity: 1;
+  }
+
+  #showcase-progress {
+    /* Replace 'var(--primary-rgb)' with your actual primary color values if not using variables */
+    box-shadow: 0 0 10px var(--primary); /* Example Emerald Glow */
+    transition: width 0.1s ease-out; /* Keeps the scrub feeling smooth */
+  }
+
+  /* Specifically targeting images in light mode to bleed the edges */
+  .light-mode .hero-parallax {
+    filter: drop-shadow(0 0 1px #ffffff) contrast(1.05) grayscale(1);
+    opacity: 0.95;
+  }
+}
+
+@layer components {
+  /* Global Typewriter Cursor utility */
+  .typewriter-cursor::after {
+    content: '_';
+    animation: blink 0.8s infinite;
+    margin-left: 2px;
+    color: var(--primary);
+    text-shadow: 0 0 5px var(--primary);
+    vertical-align: baseline;
+    display: inline-block;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+}
+
+@layer utilities {
+  /* Extra custom utility helpers if you have any */
+}

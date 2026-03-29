@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "theme/about",
+  "title": "About",
+  "category": "theme",
+  "description": "About section with image, title, description and CTA.",
+  "supports": {
+    "html": false,
+    "inserter": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "About Us"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Who We Are"
+    },
+    "description": {
+      "type": "string",
+      "default": "Tell your story here. Who you are, what you do, and why you do it."
+    },
+    "description2": {
+      "type": "string",
+      "default": "Add a second paragraph to elaborate on your mission, values, or approach."
+    },
+    "ctaText": {
+      "type": "string",
+      "default": "Work With Us"
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": "/contact"
+    },
+    "image": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}

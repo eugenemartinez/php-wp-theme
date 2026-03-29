@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "theme/services",
+  "title": "Services",
+  "category": "theme",
+  "description": "Services section with title, subtitle, description and service cards.",
+  "supports": {
+    "html": false,
+    "inserter": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Our Services"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "What We Offer"
+    },
+    "description": {
+      "type": "string",
+      "default": "Here is a brief description of the services we offer."
+    },
+    "service1Title": {
+      "type": "string",
+      "default": "Service One"
+    },
+    "service1Desc": {
+      "type": "string",
+      "default": "Brief description of your first service offering."
+    },
+    "service2Title": {
+      "type": "string",
+      "default": "Service Two"
+    },
+    "service2Desc": {
+      "type": "string",
+      "default": "Brief description of your second service offering."
+    },
+    "service3Title": {
+      "type": "string",
+      "default": "Service Three"
+    },
+    "service3Desc": {
+      "type": "string",
+      "default": "Brief description of your third service offering."
+    }
+  },
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}

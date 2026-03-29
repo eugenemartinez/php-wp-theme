@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "theme/contact",
+  "title": "Contact",
+  "category": "theme",
+  "description": "Contact section with title, subtitle, description, email and location.",
+  "supports": {
+    "html": false,
+    "inserter": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Get in Touch"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Contact Us"
+    },
+    "description": {
+      "type": "string",
+      "default": "Have a project in mind? We would love to hear from you."
+    },
+    "email": {
+      "type": "string",
+      "default": "hello@yourbrand.com"
+    },
+    "location": {
+      "type": "string",
+      "default": "Your City, Country"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "render": "file:./render.php"
+}
