@@ -1,4 +1,4 @@
-# motion-motion.js
+# motion-presets.js
 
 Declarative [Motion](https://motion.dev) animation wrapper for vanilla JS, PHP/WordPress, Shopify Liquid, or plain HTML — a drop-in parallel to `gsap-motion.js` using `npm install motion` instead of GSAP.
 
