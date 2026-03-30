@@ -21,12 +21,12 @@
 		"typography": {
 			"fontFamilies": [
 				{
-					"fontFamily": "'Poppins', -apple-system, sans-serif",
+					"fontFamily": "'Poppins', sans-serif",
 					"name": "Headline",
 					"slug": "headline"
 				},
 				{
-					"fontFamily": "'Inter', -apple-system, sans-serif",
+					"fontFamily": "'Inter', sans-serif",
 					"name": "Body",
 					"slug": "body"
 				}
@@ -39,6 +39,23 @@
 		"layout": {
 			"contentSize": "800px",
 			"wideSize": "1200px"
+		}
+	},
+	"styles": {
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--body)"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--headline)"
+				}
+			},
+			"link": {
+				"typography": {
+					"textDecoration": "none"
+				}
+			}
 		}
 	}
 }
