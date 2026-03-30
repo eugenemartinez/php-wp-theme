@@ -19,7 +19,7 @@ build
 **/build
 
 # ── WordPress specific ────────────────────────────────
-public
+wordpress/public
 release
 *.local
 
