@@ -1,161 +1,168 @@
 <?php get_header(); ?>
 
 <section id="blog" class="py-24 md:py-32 bg-background">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="px-4 mx-auto max-w-4xl sm:px-6 lg:px-8">
 
     <!-- Header -->
     <div class="mb-16">
 
       <p
-        class="text-xs uppercase tracking-wider font-semibold text-muted-foreground mb-3"
-        data-gsap="fade-up"
+        class="mb-3 text-xs font-semibold tracking-wider uppercase text-muted-foreground"
+        data-motion="fade-up"
         data-delay="0.1">
         Blog
       </p>
 
       <h1
-        class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 leading-tight"
-        data-gsap="fade-up"
+        class="mb-4 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl text-foreground"
+        data-motion="fade-up"
         data-delay="0.2">
         <?php
-        $blog_page = get_option('page_for_posts');
-        echo $blog_page ? esc_html(get_the_title($blog_page)) : 'Articles';
-        ?>
+        $blog_page = get_option("page_for_posts");
+echo $blog_page ? esc_html(get_the_title($blog_page)) : "Articles";
+?>
       </h1>
 
       <?php
-      $blog_desc = $blog_page ? get_post_field('post_content', $blog_page) : '';
-      if ($blog_desc) :
-      ?>
+      $blog_desc = $blog_page ? get_post_field("post_content", $blog_page) : "";
+if ($blog_desc): ?>
         <p
-          class="text-lg text-muted-foreground mb-6 max-w-2xl leading-relaxed"
-          data-gsap="fade-up"
+          class="mb-6 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+          data-motion="fade-up"
           data-delay="0.3">
           <?php echo wp_kses_post($blog_desc); ?>
         </p>
-      <?php endif; ?>
+      <?php endif;
+?>
 
       <p
         class="text-sm text-muted-foreground"
-        data-gsap="fade-up"
+        data-motion="fade-up"
         data-delay="0.4">
         <?php
-        $count = $wp_query->found_posts;
-        echo $count . ' ' . _n('article', 'articles', $count);
-        ?>
+  $count = $wp_query->found_posts;
+echo $count . " " . _n("article", "articles", $count);
+?>
       </p>
 
       <div
         class="mt-8 border-t-2 border-foreground"
-        data-gsap="fade-up"
+        data-motion="fade-up"
         data-delay="0.5">
       </div>
 
     </div>
 
     <!-- Articles -->
-    <?php if (have_posts()) : ?>
+    <?php if (have_posts()): ?>
       <div class="space-y-12">
-        <?php while (have_posts()) : the_post();
-          $cats      = get_the_category();
-          $tags      = get_the_tags() ?: [];
-          $read_time = get_post_meta(get_the_ID(), 'read_time', true);
-          $views     = get_post_meta(get_the_ID(), 'post_views_count', true);
-        ?>
+        <?php while (have_posts()):
+
+            the_post();
+            $cats = get_the_category();
+            $tags = get_the_tags() ?: [];
+            $read_time = get_post_meta(get_the_ID(), "read_time", true);
+            $views = get_post_meta(get_the_ID(), "post_views_count", true);
+            ?>
           <article
-            class="group cursor-pointer border-b border-border pb-12 last:border-b-0"
-            data-gsap="fade-up hover-dim"
+            class="pb-12 border-b cursor-pointer last:border-b-0 group border-border"
+            data-motion="fade-up hover-dim"
             data-scroll="true">
             <a href="<?php the_permalink(); ?>" class="block">
 
-              <div class="h-1 w-16 bg-foreground mb-6"></div>
+              <div class="mb-6 w-16 h-1 bg-foreground"></div>
 
-              <div class="flex items-center gap-3 mb-4">
-                <?php if ($cats) : ?>
-                  <span class="text-xs uppercase tracking-wider font-medium text-muted-foreground">
+              <div class="flex gap-3 items-center mb-4">
+                <?php if ($cats): ?>
+                  <span class="text-xs font-medium tracking-wider uppercase text-muted-foreground">
                     <?php echo esc_html($cats[0]->name); ?>
                   </span>
                   <span class="text-xs text-muted-foreground">•</span>
                 <?php endif; ?>
-                <span class="text-xs text-muted-foreground"><?php echo get_the_date('M j, Y'); ?></span>
-                <?php if ($views) : ?>
+                <span class="text-xs text-muted-foreground"><?php echo get_the_date(
+                    "M j, Y",
+                ); ?></span>
+                <?php if ($views): ?>
                   <span class="text-xs text-muted-foreground">•</span>
-                  <span class="text-xs text-muted-foreground"><?php echo esc_html($views); ?> reads</span>
+                  <span class="text-xs text-muted-foreground"><?php echo esc_html(
+                      $views,
+                  ); ?> reads</span>
                 <?php endif; ?>
               </div>
 
-              <h2 class="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
+              <h2 class="mb-4 text-2xl font-bold leading-tight md:text-3xl text-foreground">
                 <?php the_title(); ?>
               </h2>
 
-              <p class="text-muted-foreground leading-relaxed mb-6 text-lg">
+              <p class="mb-6 text-lg leading-relaxed text-muted-foreground">
                 <?php the_excerpt(); ?>
               </p>
 
-              <?php if ($tags) : ?>
+              <?php if ($tags): ?>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <?php foreach ($tags as $tag) : ?>
-                    <span class="text-xs px-3 py-1 bg-muted text-muted-foreground rounded-full">
+                  <?php foreach ($tags as $tag): ?>
+                    <span class="py-1 px-3 text-xs rounded-full bg-muted text-muted-foreground">
                       <?php echo esc_html($tag->name); ?>
                     </span>
                   <?php endforeach; ?>
                 </div>
               <?php endif; ?>
 
-              <?php if ($read_time) : ?>
-                <div class="flex items-center gap-2 text-sm text-muted-foreground">
-                  <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <?php if ($read_time): ?>
+                <div class="flex gap-2 items-center text-sm text-muted-foreground">
+                  <i data-lucide="clock" class="w-4 h-4"></i>
                   <span><?php echo esc_html($read_time); ?></span>
                 </div>
               <?php endif; ?>
 
             </a>
           </article>
-        <?php endwhile; ?>
+        <?php
+        endwhile; ?>
       </div>
 
       <!-- Pagination -->
-      <?php if (get_next_posts_link() || get_previous_posts_link()) : ?>
+      <?php if (get_next_posts_link() || get_previous_posts_link()): ?>
         <div
-          class="mt-16 pt-8 border-t border-border flex items-center justify-between"
-          data-gsap="fade-up"
+          class="flex justify-between items-center pt-8 mt-16 border-t border-border"
+          data-motion="fade-up"
           data-scroll="true">
           <div>
-            <?php if (get_previous_posts_link()) : ?>
+            <?php if (get_previous_posts_link()): ?>
               <a
                 href="<?php echo esc_url(get_previous_posts_page_link()); ?>"
-                class="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium"
-                data-gsap="hover-lift">
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                class="inline-flex gap-2 items-center font-medium transition-colors text-muted-foreground hover:text-foreground"
+                data-motion="hover-lift">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
                 <span>Newer</span>
               </a>
             <?php endif; ?>
           </div>
           <div>
-            <?php if (get_next_posts_link()) : ?>
+            <?php if (get_next_posts_link()): ?>
               <a
                 href="<?php echo esc_url(get_next_posts_page_link()); ?>"
-                class="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium"
-                data-gsap="hover-lift">
+                class="inline-flex gap-2 items-center font-medium transition-colors text-muted-foreground hover:text-foreground"
+                data-motion="hover-lift">
                 <span>Older</span>
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
               </a>
             <?php endif; ?>
           </div>
         </div>
       <?php endif; ?>
 
-    <?php else : ?>
+    <?php else: ?>
       <div
-        class="text-center py-20"
-        data-gsap="fade-up"
+        class="py-20 text-center"
+        data-motion="fade-up"
         data-delay="0.3">
-        <p class="text-2xl font-bold text-foreground mb-4">No articles yet.</p>
-        <p class="text-muted-foreground mb-8">Check back soon for new content.</p>
+        <p class="mb-4 text-2xl font-bold text-foreground">No articles yet.</p>
+        <p class="mb-8 text-muted-foreground">Check back soon for new content.</p>
         <a
-          href="<?php echo home_url('/'); ?>"
-          class="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold"
-          data-gsap="hover-lift">
+          href="<?php echo home_url("/"); ?>"
+          class="inline-flex gap-2 items-center py-4 px-8 font-semibold rounded-full bg-primary text-primary-foreground"
+          data-motion="hover-lift">
           Back to Home
         </a>
       </div>
@@ -165,3 +172,4 @@
 </section>
 
 <?php get_footer(); ?>
+
